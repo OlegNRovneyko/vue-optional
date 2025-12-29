@@ -36,9 +36,15 @@
         <a href="#" @click.prevent="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">Add Post</a>
       </div>
     </div>
-
-    <div>
-      <PostItem @postEdited="editPost" @postDeleted="deletePost" v-for="postItem in posts" :post="postItem"></PostItem>
+    <div class="flex justify-between">
+      <div class="w-1/2 mr-1">
+        <h3 class="mb-2">All</h3>
+        <PostItem @postEdited="editPost" v-for="postItem in posts" :post="postItem"></PostItem>
+      </div>
+      <div class="w-1/2 ml-1">
+        <h3 class="mb-2">Favorites</h3>
+        <PostItem @postEdited="editPost" v-for="postItem in posts" :post="postItem"></PostItem>
+      </div>
     </div>
   </div>
 </template>
@@ -58,15 +64,24 @@ export default {
     }
   },
 
+  provide() {
+    return {
+      posts: this.posts,
+    }
+  },
+
   components: {
     PostItem,
+  },
+
+  computed: {
+    
   },
 
   methods: {
     storePost() {
       if (!this.isValidated()) return;
       this.posts.unshift(this.post);
-      console.log(this.post)
       this.post = {};
     },    
     updatePost() {
@@ -79,10 +94,6 @@ export default {
       this.editedPost.index = this.posts.indexOf(post);
       this.editedPost.title = post.title;
       this.editedPost.content = post.content;
-    },
-    deletePost(post) {
-      const index = this.posts.indexOf(post);
-      this.posts.splice(index, 1);
     },
     isValidated() {
       this.errors = [];
