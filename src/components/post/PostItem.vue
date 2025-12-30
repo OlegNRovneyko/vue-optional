@@ -12,7 +12,10 @@
           <DeletePost :post="post"><</DeletePost>
         </div>
       </div> 
-      <div class="w-full p-4 bg-sky-600 text-white text-center cursor-pointer">Make favorite</div>
+      <div @click="post.is_favorited = !post.is_favorited" 
+      :class="[favoritedClass, 'w-full p-4 text-white text-center cursor-pointer']"
+      v-html="post.is_favorited ? 'Cancel favorited' : 'Make favorited'"
+      ></div>
     </div>
 </template>
 
@@ -31,6 +34,12 @@ export default {
 
     components: {
       DeletePost,
+    },
+
+    computed: {
+      favoritedClass() {
+        return this.post.is_favorited ? 'bg-emerald-600' : 'bg-sky-600';
+      }
     },
 
     methods: {

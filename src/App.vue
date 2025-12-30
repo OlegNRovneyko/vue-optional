@@ -43,7 +43,7 @@
       </div>
       <div class="w-1/2 ml-1">
         <h3 class="mb-2">Favorites</h3>
-        <PostItem @postEdited="editPost" v-for="postItem in posts" :post="postItem"></PostItem>
+        <PostItem @postEdited="editPost" v-for="postItem in favoritedPosts" :post="postItem"></PostItem>
       </div>
     </div>
   </div>
@@ -75,7 +75,9 @@ export default {
   },
 
   computed: {
-    
+    favoritedPosts() {
+      return this.posts.filter(post => post.is_favorited === true);
+    }
   },
 
   methods: {
