@@ -25,6 +25,10 @@ import DeletePost from './DeletePost.vue';
 export default {
     name: 'PostItem',
 
+    updated() {
+      
+    },
+
     props: {
         post: {
             type: Object,

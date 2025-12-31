@@ -27,6 +27,9 @@
         <input type="text" v-model.trim="post.title" placeholder="title" class="border border-gray-200 p-4 w-full">
       </div>
       <div class="mb-4">
+        <input type="file" ref="post_image" placeholder="image" class="border border-gray-200 p-4 w-full">
+      </div>
+      <div class="mb-4">
         <textarea @keyup.ctrl.enter="storePost" v-model.trim="post.content" placeholder="content" class="border border-gray-200 p-4 w-full"></textarea>
       </div>
       <div v-if="errors.length > 0" class="text-red-600 mb-2">
@@ -53,6 +56,19 @@
 import PostItem from './components/post/PostItem.vue';
 export default {
   name: 'Our App',
+
+  created() {
+
+  },
+
+  mounted() {
+    const postImage = this.$refs.post_image;
+    console.log(postImage);
+  },
+
+  updated() {
+    
+  },
 
   data() {
     return {
@@ -84,6 +100,10 @@ export default {
     storePost() {
       if (!this.isValidated()) return;
       this.posts.unshift(this.post);
+
+      const postImage = this.$refs.post_image;
+      postImage.value = null;
+
       this.post = {};
     },    
     updatePost() {
