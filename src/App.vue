@@ -26,9 +26,9 @@
       <div class="mb-4">
         <input type="text" v-model.trim="post.title" placeholder="title" class="border border-gray-200 p-4 w-full">
       </div>
-      <div class="mb-4">
+      <!-- <div class="mb-4">
         <input type="file" ref="post_image" placeholder="image" class="border border-gray-200 p-4 w-full">
-      </div>
+      </div> -->
       <div class="mb-4">
         <textarea @keyup.ctrl.enter="storePost" v-model.trim="post.content" placeholder="content" class="border border-gray-200 p-4 w-full"></textarea>
       </div>
@@ -54,6 +54,8 @@
 
 <script>
 import PostItem from './components/post/PostItem.vue';
+import { sayHello, sayHi } from './composables/post.js';
+
 export default {
   name: 'Our App',
 
@@ -62,8 +64,10 @@ export default {
   },
 
   mounted() {
-    const postImage = this.$refs.post_image;
-    console.log(postImage);
+    // const postImage = this.$refs.post_image;
+    // console.log(postImage);
+    this.sayHello();
+    this.sayHi();
   },
 
   updated() {
@@ -125,7 +129,9 @@ export default {
         }
       });
       return this.errors.length < 1;
-    }
+    },
+    sayHello,
+    sayHi,
   },
 
   watch: {
