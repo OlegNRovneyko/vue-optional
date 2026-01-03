@@ -1,0 +1,29 @@
+{
+  "posts": [
+    { 
+        "id": "1", 
+        "title": "a title", 
+        "content": "some awesome content"
+    },
+    { 
+        "id": "2", 
+        "title": "another title", 
+        "content": "more awesome content"
+    },
+    { 
+        "id": "3", 
+        "title": "last title", 
+        "content": "the last awesome content"
+    },
+    { 
+        "id": "4", 
+        "title": "final title", 
+        "content": "the final awesome content"
+    },
+    { 
+        "id": "5", 
+        "title": "ultimate title", 
+        "content": "the ultimate awesome content"
+    }
+  ]
+}
